@@ -16,6 +16,7 @@
 // Import commands.js using ES2015 syntax:
 import { createJSDocTypeExpression } from 'typescript'
 import './commands'
+require('cypress-xpath')
 
 // Alternatively you can use CommonJS syntax:
 // require('./commands')

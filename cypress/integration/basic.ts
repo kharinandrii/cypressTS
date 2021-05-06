@@ -1,4 +1,5 @@
 ///<reference types="Cypress" />
+/// <reference types="cypress-xpath" />
 import fake from 'ts-faker';
 describe("Tests block one", () => {
   let text = "An account using this email address has already been registered. Please enter a valid password or request a new one. ";
@@ -35,6 +36,9 @@ describe("Tests block one", () => {
     cy.get('#passwd').type('demo1234');
     cy.get('#SubmitLogin').click();
     cy.contains('My account').should('be.visible');
+    cy.get('a[title="Home"]').click();
+    cy.get('a.blockbestsellers').click();
+    cy.xpath('//*[@id="homefeatured"]//*[@class = "product_img_link" and @title="Blouse"]').click();
   })
 
   it("user login", () => {
