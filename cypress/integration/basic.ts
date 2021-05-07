@@ -38,13 +38,25 @@ describe("Tests block one", () => {
     cy.contains('My account').should('be.visible');
     cy.get('a[title="Home"]').click();
     cy.get('a.blockbestsellers').click();
-    cy.xpath('//*[@id="homefeatured"]//*[@class = "product_img_link" and @title="Blouse"]').click();
+    cy.get("#blockbestsellers").children().contains("Blouse").click();
+   // cy.xpath("//*[@id='blockbestsellers']//*[@title='Blouse' and @class = 'product-name']").should("be.visible").click();
   })
 
   it("user login", () => {
+    cy.visit('http://automationpractice.com/index.php');
+    cy.get("a.login").click();
+    cy.get('form').within(($form) =>{
+      cy.get("#email").type("ggdsgsdg@sffs.ios");
+      cy.get('#passwd').type('demo1234');
+      cy.get('#SubmitLogin').click();
+    })
+
+    
 
   })
 })
+
+
 
   //https://basarat.gitbook.io/typescript/intro-1/cypress
   //https://glebbahmutov.com/blog/use-typescript-with-cypress/

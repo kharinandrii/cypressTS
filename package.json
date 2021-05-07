@@ -14,11 +14,11 @@
   "dependencies": {
     "cypress": "^7.1.0",
     "faker": "^5.5.3",
-    "ts-faker": "0.0.5",
-    "typescript": "^4.2.4"
+    "ts-faker": "0.0.5"
   },
   "devDependencies": {
     "@types/node": "^14.14.41",
-    "cypress-xpath": "^1.6.2"
+    "cypress-xpath": "^1.6.2",
+    "typescript": "^4.2.4"
   }
 }
