@@ -3,7 +3,7 @@
 import fake from 'ts-faker';
 describe("Tests block one", () => {
     it.only("user login", function() {
-        cy.visit('http://automationpractice.com/index.php');
+        cy.visit('/');
     cy.get("a.login").click();
     cy.get('form').within(($form) =>{
       cy.get("#email").type("ggdsgsdg@sffs.ios");

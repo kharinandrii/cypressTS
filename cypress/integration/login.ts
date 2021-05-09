@@ -4,7 +4,7 @@ import fake from 'ts-faker';
 describe("Tests block one", () => {
     let text = "An account using this email address has already been registered. Please enter a valid password or request a new one. ";
     it("use registered email", () => {
-        cy.visit('http://automationpractice.com/index.php');
+        cy.visit('/');
         cy.get("a.login").click();
         cy.url().should('include', 'my-account')
         cy.get("#email_create").type("ggdsgsdg@sffs.ios");
