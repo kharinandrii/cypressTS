@@ -4,7 +4,7 @@ import fake from 'ts-faker';
 describe("Tests block one", () => {
  
   it('create account', () => {
-    cy.visit('http://automationpractice.com/index.php');
+    cy.visit('/');
     cy.get("a.login").click();
     cy.get("#email_create").type("ggdsgsdg@sffs.ios");
     cy.get("#SubmitCreate").click();
