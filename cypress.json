@@ -1,3 +1,5 @@
 {
-    "baseUrl": "http://automationpractice.com/index.php"
+    "baseUrl": "http://automationpractice.com/index.php",
+    "viewportHeight": 1080,
+    "viewportWidth": 1920
 }
