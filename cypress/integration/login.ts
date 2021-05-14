@@ -21,6 +21,21 @@ describe("Tests block one", () => {
         cy.get('a[title="Home"]').click();
         cy.get('a.blockbestsellers').click();
         cy.get("#blockbestsellers").children().contains("Blouse").click();
-       // cy.xpath("//*[@id='blockbestsellers']//*[@title='Blouse' and @class = 'product-name']").should("be.visible").click();
+        
+       cy.get('#quantity_wanted').invoke('val') .then(text => {
+        const someText = text;
+        if(Number(someText) == 1){
+          cy.contains('Add to cart').click();
+        }if(Number(someText) < 1){
+          cy.get('.icon-plus').click();
+          cy.contains('Add to cart').click();
+        }if(Number(someText) > 1){
+          cy.get('.icon-minus').click();
+          cy.contains('Add to cart').click();
+        }
+      });
+      cy.get('[title = "Proceed to checkout"]').click();
+      cy.get('#cart_title').should('contains.text', 'Shopping-cart summary');
       })
+      //дописать проверку того сколько товара в корзине а так же проверку того сколько получается товара по цене
 })
