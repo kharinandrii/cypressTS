@@ -3,6 +3,10 @@
 import fake from 'ts-faker';
 describe("Tests block one", () => {
     let text = "An account using this email address has already been registered. Please enter a valid password or request a new one. ";
+    let  totalProd;
+    let totalShipping;
+    let totalTax;
+    let totalPrice;
     it("use registered email", () => {
         cy.visit('/');
         cy.get("a.login").click();
@@ -36,6 +40,24 @@ describe("Tests block one", () => {
       });
       cy.get('[title = "Proceed to checkout"]').click();
       cy.get('#cart_title').should('contains.text', 'Shopping-cart summary');
+      cy.get('#total_product').invoke('text') .then(text => {
+        const someText = text;
+         totalProd = someText.slice(1)
+      })
+      cy.get('#total_shipping').invoke('text') .then(text => {
+        const someText = text;
+        totalShipping = someText.slice(1)
+      })
+      cy.get('#total_tax').invoke('text') .then(text => {
+        const someText = text;
+        totalTax = someText.slice(1)
+      })
+      cy.get('#total_price').invoke('text') .then(text => {
+        const someText = text;
+        totalPrice = someText.slice(1)
+      //  let summPrice = totalProd + totalShipping + totalTax
+      })
+      
       })
       //дописать проверку того сколько товара в корзине а так же проверку того сколько получается товара по цене
 })
