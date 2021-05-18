@@ -3,10 +3,11 @@
 import fake from 'ts-faker';
 describe("Tests block one", () => {
     let text = "An account using this email address has already been registered. Please enter a valid password or request a new one. ";
-    let  totalProd;
-    let totalShipping;
-    let totalTax;
-    let totalPrice;
+    let  totalProd: string;
+    let totalShipping: string;
+    let totalTax: string;
+    let totalPrice: string;
+    let  summPrice: number;
     it("use registered email", () => {
         cy.visit('/');
         cy.get("a.login").click();
@@ -40,24 +41,38 @@ describe("Tests block one", () => {
       });
       cy.get('[title = "Proceed to checkout"]').click();
       cy.get('#cart_title').should('contains.text', 'Shopping-cart summary');
-      cy.get('#total_product').invoke('text') .then(text => {
+      cy.get('#total_product').invoke('text').then(text => {
         const someText = text;
-         totalProd = someText.slice(1)
+         totalProd = someText.slice(1);
       })
-      cy.get('#total_shipping').invoke('text') .then(text => {
+      cy.get('#total_shipping').invoke('text').then(text => {
         const someText = text;
-        totalShipping = someText.slice(1)
+        totalShipping = someText.slice(1);
       })
-      cy.get('#total_tax').invoke('text') .then(text => {
+      cy.get('#total_tax').invoke('text').then(text => {
         const someText = text;
-        totalTax = someText.slice(1)
+        totalTax = someText.slice(1);
       })
-      cy.get('#total_price').invoke('text') .then(text => {
+      cy.get('#total_price').invoke('text').then(text => {
         const someText = text;
-        totalPrice = someText.slice(1)
-      //  let summPrice = totalProd + totalShipping + totalTax
+        totalPrice = someText.slice(1);
+        summPrice = Number(totalProd) + Number(totalShipping) + Number(totalTax)
+        if(Number(totalPrice) == summPrice){
+          cy.get('.cart_navigation').children('[title="Proceed to checkout"]').click();
+      }
       })
-      
+      cy.get('[name="processAddress"]').click();
+      cy.get('[name="processCarrier"]').click();
+      cy.get('.fancybox-error').should('have.text', 'You must agree to the terms of service before continuing.');
+      cy.get('[title="Close"]').click();
+      cy.get('#cgv').click();
+      cy.get('[name="processCarrier"]').click();
+      cy.get('[title="Pay by bank wire"]').click();
+      cy.contains('I confirm my order').click();
+      cy.get('button').contains('I confirm my order').click();
+      cy.get('[title="Return to Home"]').click();
       })
-      //дописать проверку того сколько товара в корзине а так же проверку того сколько получается товара по цене
 })
+
+
+

@@ -32,3 +32,4 @@ describe("Tests block one", () => {
   //https://www.youtube.com/channel/UCDOCAVIhSh5VpJMEfdak1OA/videos
   //https://www.youtube.com/playlist?list=PLUDwpEzHYYLu4jKg-rNSKH3aJeBinlPXp
   //https://filiphric.com/
+  //https://ichi.pro/ru/avtomatizirovannoe-testirovanie-s-cypress-26111064922493
