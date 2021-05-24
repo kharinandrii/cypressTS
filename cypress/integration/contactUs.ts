@@ -12,7 +12,11 @@ describe("Tests block one", () => {
     })
         cy.get('#contact-link').children('a').click();
         cy.get('form').within(($form) =>{
-          cy.get('#id_contact').select('2');
+          //cy.get('#id_contact').select('2');
+          cy.get('#id_contact').then(drobdown =>{
+              cy.wrap(drobdown).click();
+              //дописать код по дробдаунам с помощью итератора и разобраться как это работает
+          })
           cy.get('#email').should("have.value", "ggdsgsdg@sffs.ios");
           cy.get('#submitMessage').click();
         })

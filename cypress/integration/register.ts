@@ -2,13 +2,14 @@
 /// <reference types="cypress-xpath" />
 import fake from 'ts-faker';
 describe("Tests block one", () => {
- 
-  it('create account', () => {
+  let emailErrorText = "An account using this email address has already been registered. Please enter a valid password or request a new one. ";
+  it.only('create account', () => {
     cy.visit('/');
     cy.get("a.login").click();
-    cy.get("#email_create").type("ggdsgsdg@sffs.ios");
+    cy.get("#email_create").type("gg12dsgsdg@sffs.ios");
     cy.get("#SubmitCreate").click();
-    cy.get("#id_gender1").click();
+    cy.get("#id_gender1").check();
+    cy.get("#id_gender1").should('be.checked');
     cy.get("#customer_firstname").type("Nicolo");
     cy.get("#customer_lastname").type("FamilyName");
     cy.get("#passwd").type("demo1234");
@@ -20,6 +21,17 @@ describe("Tests block one", () => {
     cy.get("#submitAccount").click();
     cy.get('[title="Log me out"]').click()
   });
+
+  it('register with used email', () =>{
+    cy.visit('/');
+        cy.get("a.login").click();
+        cy.url().should('include', 'my-account')
+        cy.get("#email_create").type("ggdsgsdg@sffs.ios");
+        cy.get("#email_create").should("have.attr", "name", "email_create");
+        cy.get("#email_create").should("have.value", "ggdsgsdg@sffs.ios");
+        cy.get("#SubmitCreate").click();
+        cy.get("#create_account_error").should("have.text", emailErrorText)
+})
 })
 
 

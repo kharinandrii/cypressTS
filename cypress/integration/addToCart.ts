@@ -19,8 +19,7 @@ describe("Tests block one", () => {
         cy.get('a[title="Home"]').click();
         cy.get('a.blockbestsellers').click();
         cy.get("#blockbestsellers").children().contains("Blouse").click();
-        
-       cy.get('#quantity_wanted').invoke('val') .then(text => {
+        cy.get('#quantity_wanted').invoke('val') .then(text => {
         const someText = text;
         if(Number(someText) == 1){
           cy.contains('Add to cart').click();
